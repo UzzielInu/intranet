@@ -32,9 +32,9 @@
                         </div>
                         @endif
 
-                        <form method="POST" action="{{ url('administrativeUnit') }}">
+                        <form method="POST" action="{{ route('administrativeUnit.store') }}">
 
-                            {{ csrf_field() }}
+                            @csrf
 
                             <div class="mb-3">
                                 <label class="form-label" for="inputName">Número :</label>
@@ -68,17 +68,17 @@
                                 <input type="text" name="type" id="inputType" class="form-control @error('type') is-invalid @enderror" placeholder="Tipo">
 
                                 Way 2: Display Error Message -->
-                                <!-- @error('type') -->
-                                <!-- <span class="text-red-600">{{ $message }}</span> -->
-                                <!-- @enderror -->
+                            <!-- @error('type') -->
+                            <!-- <span class="text-red-600">{{ $message }}</span> -->
+                            <!-- @enderror -->
                             <!-- </div> -->
                             <div class="mb-3">
-                            <label class="form-label" for="inputName">Tipo :</label>
-                            <select name="type" id="inputType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-4/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('type') is-invalid @enderror">
-                                <option selected>Tipo</option>
-                                <option value="DG">Dirección General</option>
-                                <option value="P">Plantel</option>
-                            </select>
+                                <label class="form-label" for="inputName">Tipo :</label>
+                                <select name="type" id="inputType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-4/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('type') is-invalid @enderror">
+                                    <option selected value="">Tipo</option>
+                                    <option value="DG">Dirección General</option>
+                                    <option value="P">Plantel</option>
+                                </select>
                                 <!-- Way 2: Display Error Message -->
                                 @error('type')
                                 <span class="text-red-600">{{ $message }}</span>

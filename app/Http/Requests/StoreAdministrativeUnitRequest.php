@@ -25,7 +25,7 @@ class StoreAdministrativeUnitRequest extends FormRequest
             'local_id' => 'required',
             'name' => 'required',
             'mnemonic' => 'required',
-            'type' => 'required',
+            'type' => 'required|string',
         ];
     }
 
@@ -36,6 +36,7 @@ class StoreAdministrativeUnitRequest extends FormRequest
             'name.required' => 'El campo Name es requerido.',
             'mnemonic.required' => 'El campo Mnemonic es requerido.',
             'type.required' => 'El campo Type es requerido.',
+            'type.string' => 'El campo Type debe contener al menos un dato.',
         ];
     }
 }

@@ -13,6 +13,16 @@ class AdministrativeUnitTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        $this->setTdAttributes(function(Column $column, $row, $columnIndex, $rowIndex) {
+            if ($column->isField('acciones')) {
+              return [
+                'default' => false,
+                'class' => 'bg-red-500 dark:text-red-400',
+              ];
+            }
+        
+            return [];
+          });
     }
 
     public function columns(): array
@@ -31,19 +41,20 @@ class AdministrativeUnitTable extends DataTableComponent
                 ->sortable(),
             Column::make("Created at", "created_at")
                 ->sortable(),
-            Column::make('Acciones')
+            Column::make('Acciones', 'acciones')
                 ->label(
-                    fn ($row, Column $column)  => '<button class="px-4 py-2 font-semibold text-sm bg-cyan-500 dark:bg-cyan-500 text-white rounded-full shadow-sm"><i class="fa-solid fa-cart-shopping"></i></button>
-                    <button wire:click="destroy(' . $row->id . ')" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="return confirm(\'Holis\')"><i class="fa-solid fa-star"></i></button>'
-                )
+                    fn ($row, Column $column)  => '<button onclick="location.href = \'/administrativeUnit/'.$row->id .'\'"class="py-2 px-3 border rounded-lg"><i class="fa-regular fa-eye text-green-600"></i></button>
+                    <button onclick="location.href = \'/administrativeUnit/'.$row->id .'/edit\'"class="py-2 px-3 border rounded-full"><i class="fa-solid fa-pen-to-square text-blue-600"></i></button> <button wire:click="destroy(' . $row->id . ')" class="py-2 px-3 border" onclick="return confirm(\'Holis\')"><i class="fa-solid fa-trash b text-red-600"></i></button>'
+                ) 
+                ->excludeFromColumnSelect()
                 ->html(),
         ];
     }
 
     public function destroy($id)
     {
-        $adminUnit = AdministrativeUnit::find($id);
-        $adminUnit->delete();
+        $administrativeUnit = AdministrativeUnit::find($id);
+        $administrativeUnit->delete();
         return redirect()->route('administrativeUnit.index')->with('success', 'Usuario eliminado exitosamente');
     }
 }

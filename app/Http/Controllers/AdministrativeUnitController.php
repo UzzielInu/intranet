@@ -33,8 +33,6 @@ class AdministrativeUnitController extends Controller
      */
     public function store(StoreAdministrativeUnitRequest $request)
     {
-        //
-        // dd($request);
         $validated = $request->validated();
         $administrativeUnit = AdministrativeUnit::create($validated);
 
@@ -42,11 +40,10 @@ class AdministrativeUnitController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource, excluding the soft-delete
      */
     public function show(AdministrativeUnit $administrativeUnit)
     {
-        // dd($administrativeUnit);
         return view('administrativeUnit.show', ['administrativeUnit' => $administrativeUnit]);
     }
 
@@ -55,8 +52,9 @@ class AdministrativeUnitController extends Controller
      */
     public function edit(AdministrativeUnit $administrativeUnit)
     {
-        $administrativeUnit;
-        dd($administrativeUnit->name);
+        // $administrativeUnit;
+        // dd($administrativeUnit);
+        return view('administrativeUnit.edit', ['administrativeUnit' => $administrativeUnit]);
     }
 
     /**
@@ -65,10 +63,13 @@ class AdministrativeUnitController extends Controller
     public function update(UpdateAdministrativeUnitRequest $request, AdministrativeUnit $administrativeUnit)
     {
         //
+        $administrativeUnit->update($request->all());
+        $administrativeUnit->save();
+        return back()->with('success', 'Administrative Unit edited successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage -> this is already done in the datatable
      */
     public function destroy(AdministrativeUnit $administrativeUnit)
     {
