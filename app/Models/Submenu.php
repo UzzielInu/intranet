@@ -14,7 +14,12 @@ class Submenu extends Model
     protected $fillable = [
         'name',
         'mnemonic',
-        'createdAt',
-        'updatedAt',
+        'created_at',
+        'updated_at',
     ];
+
+    public function setMnemonicAttribute($value)
+    {
+        $this->attributes['mnemonic'] = strtoupper($value);
+    }
 }

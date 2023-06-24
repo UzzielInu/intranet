@@ -52,7 +52,6 @@ class AdministrativeUnitController extends Controller
      */
     public function edit(AdministrativeUnit $administrativeUnit)
     {
-        // $administrativeUnit;
         // dd($administrativeUnit);
         return view('administrativeUnit.edit', ['administrativeUnit' => $administrativeUnit]);
     }

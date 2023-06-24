@@ -13,7 +13,10 @@ class SubmenuController extends Controller
      */
     public function index()
     {
-        //
+        // dd("hola");
+        return view('submenu.index', [
+            'submenus' => Submenu::all(),
+        ]);
     }
 
     /**
@@ -37,7 +40,7 @@ class SubmenuController extends Controller
      */
     public function show(Submenu $submenu)
     {
-        //
+        return view('submenu.show', ['submenu' => $submenu]);
     }
 
     /**
@@ -45,7 +48,8 @@ class SubmenuController extends Controller
      */
     public function edit(Submenu $submenu)
     {
-        //
+        // dd($submenu);
+        return view('submenu.edit', ['submenu' => $submenu]);
     }
 
     /**
@@ -53,7 +57,9 @@ class SubmenuController extends Controller
      */
     public function update(UpdateSubmenuRequest $request, Submenu $submenu)
     {
-        //
+        $submenu->update($request->all());
+        $submenu->save();
+        return back()->with('success', 'Sub menú edited successfully.');
     }
 
     /**
