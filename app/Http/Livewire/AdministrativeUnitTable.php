@@ -13,38 +13,27 @@ class AdministrativeUnitTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-        $this->setTdAttributes(function(Column $column, $row, $columnIndex, $rowIndex) {
-            if ($column->isField('acciones')) {
-              return [
-                'default' => false,
-                'class' => 'bg-red-500 dark:text-red-400',
-              ];
-            }
-        
-            return [];
-          });
     }
 
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make("Id")
                 ->sortable(),
-            Column::make("Local id", "local_id")
+            Column::make("Número Unidad", "local_id")
                 ->sortable(),
-            Column::make("Name", "name")
+            Column::make("Nombre", "name")
                 ->sortable()
                 ->searchable(),
-            Column::make("Mnemonic", "mnemonic")
+            // Column::make("Mnemonico", "mnemonic"),
+            Column::make("Tipo", "type")
                 ->sortable(),
-            Column::make("Type", "type")
-                ->sortable(),
-            Column::make("Created at", "created_at")
+            Column::make("Fecha Creación", "created_at")
                 ->sortable(),
             Column::make('Acciones', 'acciones')
                 ->label(
-                    fn ($row, Column $column)  => '<button onclick="location.href = \'/administrativeUnit/'.$row->id .'\'"class="py-2 px-3 border rounded-lg"><i class="fa-regular fa-eye text-green-600"></i></button>
-                    <button onclick="location.href = \'/administrativeUnit/'.$row->id .'/edit\'"class="py-2 px-3 border rounded-full"><i class="fa-solid fa-pen-to-square text-blue-600"></i></button> <button wire:click="destroy(' . $row->id . ')" class="py-2 px-3 border" onclick="return confirm(\'Holis\')"><i class="fa-solid fa-trash b text-red-600"></i></button>'
+                    fn ($row)  => '<button onclick="location.href = \'/administrativeUnit/'.$row->id .'\'"class="py-2 px-3 border rounded-lg"><i class="fa-regular fa-eye text-green-600"></i></button>
+                    <button onclick="location.href = \'/administrativeUnit/'.$row->id .'/edit\'"class="py-2 px-3 border rounded-full"><i class="fa-solid fa-pen-to-square text-blue-600"></i></button> <button wire:click="destroy(' . $row->id . ')" class="py-2 px-3 border""><i class="fa-solid fa-trash b text-red-600"></i></button>'
                 ) 
                 ->excludeFromColumnSelect()
                 ->html(),
@@ -55,7 +44,7 @@ class AdministrativeUnitTable extends DataTableComponent
     {
         $administrativeUnit = AdministrativeUnit::find($id);
         $administrativeUnit->delete();
-        return redirect()->route('administrativeUnit.index')->with('success', 'Usuario eliminado exitosamente');
+        return redirect()->route('administrativeUnit.index')->with('success', 'Unidad Administrativa eliminada exitosamente');
     }
 }
 

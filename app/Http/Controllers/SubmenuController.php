@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Submenu;
 use App\Http\Requests\StoreSubmenuRequest;
 use App\Http\Requests\UpdateSubmenuRequest;
+use App\Models\AdministrativeUnit;
 
 class SubmenuController extends Controller
 {
@@ -24,7 +25,9 @@ class SubmenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('submenu.create', [
+            'administrativeUnits' => AdministrativeUnit::all(),
+        ]);
     }
 
     /**

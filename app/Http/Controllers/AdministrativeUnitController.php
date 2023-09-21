@@ -36,7 +36,7 @@ class AdministrativeUnitController extends Controller
         $validated = $request->validated();
         $administrativeUnit = AdministrativeUnit::create($validated);
 
-        return back()->with('success', 'Administrative Unit created successfully.');
+        return back()->with('success', 'La unidad administrativa se ha guardado correctamente');
     }
 
     /**

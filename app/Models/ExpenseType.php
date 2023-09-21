@@ -14,7 +14,17 @@ class ExpenseType extends Model
     protected $fillable = [
         'name',
         'mnemonic',
-        'createdAt',
-        'updatedAt',
+        'created_at',
+        'updated_at',
     ];
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtoupper($value);
+    }
+
+    public function setMnemonicAttribute($value)
+    {
+        $this->attributes['mnemonic'] = strtoupper($value);
+    }
 }

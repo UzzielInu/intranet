@@ -1,0 +1,11 @@
+Verde oscuro: #13322b
+verde claro: #00B3A1
+
+
+
+Pendientes:
+
+Hacer que la sidebar, sirva para hacer la contracción -> esto ya lo hace pero responsive, habria que ver si se necesita en desk
+revisar los active links del sidebar -> done
+dashboard -> bienvenido con nombre-> done 
+con un feed de X (feibuk, twitter) -> WIP

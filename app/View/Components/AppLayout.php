@@ -12,6 +12,6 @@ class AppLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.test');
+        return view('layouts.layoutV1');
     }
 }

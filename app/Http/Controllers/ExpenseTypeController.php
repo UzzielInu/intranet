@@ -13,7 +13,9 @@ class ExpenseTypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('expenseType.index', [
+            'expensesType' => ExpenseType::all(),
+        ]);
     }
 
     /**
@@ -21,7 +23,9 @@ class ExpenseTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('expenseType.create', [
+            'expensesType' => ExpenseType::all(),
+        ]);
     }
 
     /**
@@ -29,7 +33,10 @@ class ExpenseTypeController extends Controller
      */
     public function store(StoreExpenseTypeRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $expenseType = ExpenseType::create($validated);
+
+        return back()->with('success', 'Administrative Unit created successfully.');
     }
 
     /**
@@ -37,7 +44,7 @@ class ExpenseTypeController extends Controller
      */
     public function show(ExpenseType $expenseType)
     {
-        //
+        return view('expenseType.show', ['expenseType' => $expenseType]);
     }
 
     /**
@@ -45,7 +52,7 @@ class ExpenseTypeController extends Controller
      */
     public function edit(ExpenseType $expenseType)
     {
-        //
+        return view('expenseType.edit', ['expenseType' => $expenseType]);
     }
 
     /**
@@ -53,7 +60,10 @@ class ExpenseTypeController extends Controller
      */
     public function update(UpdateExpenseTypeRequest $request, ExpenseType $expenseType)
     {
-        //
+        $expenseType->update($request->all());
+        $expenseType->save();
+        return back()->with('success', 'Administrative Unit edited successfully.');
+
     }
 
     /**

@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Conalep') }}</title>
-    <meta name="author" content="David Grzyb">
     <meta name="description" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Tailwind -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 
@@ -19,32 +17,33 @@
         }
 
         .bg-sidebar {
-            background: #3d68ff;
+            background: #13322b;
         }
 
         .cta-btn {
-            color: #3d68ff;
+            color: #13322b;
         }
 
         .upgrade-btn {
-            background: #1947ee;
+            background: #00B3A1;
         }
 
         .upgrade-btn:hover {
-            background: #0038fd;
+            background: #00B3A1;
         }
 
         .active-nav-link {
-            background: #1947ee;
+            background: #00B3A1;
         }
 
         .nav-item:hover {
-            background: #1947ee;
+            background: #00B3A1;
         }
 
         .account-link:hover {
-            background: #3d68ff;
+            background: #13322b;
         }
+
         [x-cloak] {
             display: none !important;
         }
@@ -55,22 +54,43 @@
 
 <body class="bg-gray-100 font-family-karla flex">
 
-    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl" style="overflow-y: hidden;">
         <div class="p-3 mb-4">
             <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
                 <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
             </a>
         </div>
         <nav class="text-white text-base font-semibold pt-3">
-            <a href="index.html" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+            <a href="{{ route('catalogues.index') }}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Catálogos
             </a>
-            <a href="blank.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <div class="my-4 bg-gray-600 h-[1px]"></div>
+            <!-- <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white" onclick="dropdown()">
+            <i class="fa-regular fa-comment-dots"></i>
+                <div class="flex justify-between w-full items-center">
+                    <span class="text-[15px] ml-4 text-gray-200 font-bold">Chatbox</span>
+                    <span class="text-sm rotate-180" id="arrow">
+                    <i class="fa-solid fa-chevron-up"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold" id="submenu">
+                <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                <i class="fa-solid fa-thumbs-up"></i> Social
+                </h1>
+                <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Personal
+                </h1>
+                <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                    Friends
+                </h1>
+            </div> -->
+            <a href="{{ route('sheetNumber.index') }}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
-                Objeto 1
+                Folios
             </a>
-            <a href="tables.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <!-- <a href="tables.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Objeto 2
             </a>
@@ -85,9 +105,9 @@
             <a href="calendar.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-calendar mr-3"></i>
                 Algo más
-            </a>
+            </a> -->
         </nav>
-        <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
+        <a href="#" class="absolute w-full upgrade-btn bottom-0 nav-item text-white flex items-center justify-center py-4">
             <i class="fas fa-arrow-circle-left mr-3"></i>
             Footer de menú
         </a>
@@ -95,7 +115,7 @@
 
     <div class="w-full flex flex-col h-screen overflow-y-hidden">
         <!-- Desktop Header -->
-        <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
+        <header class="w-full items-center bg-green-950 py-2 px-6 hidden sm:flex">
             <div class="w-1/2"></div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
@@ -105,7 +125,15 @@
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                     <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
                     <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
+                    <a href="{{ route('logout') }}" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                    <!-- <a class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item"> -->
+                    <!-- <i class="fas fa-sign-out-alt mr-3"></i> -->
+                    <button type="submit" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">Sign Out</button>
+                <!-- </a> -->
+                </form>
+                    <!-- <a href="#" class="block px-4 py-2 account-link hover:text-white">Sign Out</a> -->
                 </div>
             </div>
         </header>
@@ -154,10 +182,13 @@
                     <i class="fas fa-user mr-3"></i>
                     My Account
                 </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-sign-out-alt mr-3"></i>
-                    Sign Out
-                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                    <!-- <a class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item"> -->
+                    <!-- <i class="fas fa-sign-out-alt mr-3"></i> -->
+                    <button type="submit">Sign Out</button>
+                <!-- </a> -->
+                </form>
                 <button class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                     <i class="fas fa-arrow-circle-up mr-3"></i> Upgrade to Pro!
                 </button>
@@ -168,18 +199,14 @@
         </header>
 
         <div class="w-full overflow-x-hidden border-t flex flex-col">
-            <main class="w-full flex-grow p-6">
+            <main class="w-full flex-grow p-0">
                 <div class="grid grid-cols-2">
-                {{ $header }}
+                    
                 </div>
-                    <div class="bg-white overflow-auto">                            
-                        {{ $slot }}
-                    </div>
+                <div class="bg-white overflow-auto">
+                    
+                </div> 
             </main>
-
-            <footer class="w-full bg-white text-right p-4">
-                Built by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>.
-            </footer>
         </div>
 
     </div>
@@ -195,6 +222,17 @@
     <!-- create script def -->
     <!-- SCRIPTS HERE -->
     @livewireScripts
+    <script>
+        function dropdown() {
+            document.querySelector("#submenu").classList.toggle("hidden");
+            document.querySelector("#arrow").classList.toggle("rotate-0");
+        }
+        dropdown();
+
+        function openSidebar() {
+            document.querySelector(".sidebar").classList.toggle("hidden");
+        }
+    </script>
 </body>
 
 </html>

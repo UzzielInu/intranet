@@ -32,11 +32,11 @@ class StoreAdministrativeUnitRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'local_id.required' => 'El campo local_id es requerido.',
-            'name.required' => 'El campo Name es requerido.',
-            'mnemonic.required' => 'El campo Mnemonic es requerido.',
-            'type.required' => 'El campo Type es requerido.',
-            'type.string' => 'El campo Type debe contener al menos un dato.',
+            'local_id.required' => 'El campo Número es requerido.',
+            'name.required' => 'El campo Nombre es requerido.',
+            'mnemonic.required' => 'El campo Mnemonico es requerido.',
+            'type.required' => 'El campo Tipo es requerido.',
+            'type.string' => 'El campo Tipo debe contener al menos un dato.',
         ];
     }
 }

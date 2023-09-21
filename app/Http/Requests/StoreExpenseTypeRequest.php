@@ -11,7 +11,7 @@ class StoreExpenseTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreExpenseTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'mnemonic' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'El campo Name es requerido.',
+            'mnemonic.required' => 'El campo Mnemonic es requerido.',
         ];
     }
 }
