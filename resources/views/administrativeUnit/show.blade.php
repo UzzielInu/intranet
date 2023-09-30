@@ -1,46 +1,61 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Unidades Administrativas - Detalle') }}
-        </h2>
-    </x-slot>
-    <div class="py-12 px-6">
-        <div class="container mx-auto sm:px-6 lg:px-8 space-y-6 ">
-            <div class="lg:mx-48 sm:mx-0 2xl:my-40 2xl:mx-40">
-                <div class="flex flex-wrap -mx-3 mb-6 self-center">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-first-name">
-                            Id
+    <div class="flex flex-col gap-9">
+        <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 class="font-semibold text-black dark:text-white">
+                    Detalle Unidad Administrativa
+                </h3>
+            </div>
+            <div class="p-6.5">
+                <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                    <div class="w-full xl:w-1/2">
+                        <label class="mb-2.5 block text-black dark:text-white" for="id">
+                            Identificador en BD
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="{{ $administrativeUnit->id}}" disabled>
+                        <input
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            id="id" name="id" type="text" placeholder="{{ $administrativeUnit->id }}"
+                            disabled>
                     </div>
-                    <div class="w-full md:w-1/2 px-3">
-                        <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-last-name">
-                            Id de unidad
+                    <div class="w-full xl:w-1/2">
+                        <label class="mb-2.5 block text-black dark:text-white" for="local_id">
+                            Número
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="{{$administrativeUnit->local_id}}" disabled>
-                    </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-password">
-                            Nombre
-                        </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-600 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text" placeholder="{{$administrativeUnit->name}}" disabled>
+                        <input
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            id="local_id" name="local_id" type="text"
+                            placeholder="{{ $administrativeUnit->local_id }}" disabled>
                     </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-2">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-city">
-                            Mnemonico
+                <div class="mb-4.5">
+                    <label class="mb-2.5 block text-black dark:text-white" for="name">
+                        Nombre
+                    </label>
+                    <input
+                        class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                        id="name" name="name" type="text" placeholder="{{ $administrativeUnit->name }}"
+                        disabled>
+                </div>
+                <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                    <div class="w-full xl:w-1/2">
+                        <label class="mb-2.5 block text-black dark:text-white" for="mnemonic">
+                            Mnemónico
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="{{$administrativeUnit->mnemonic}}" disabled>
+                        <input
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            id="mnemonic" type="text"
+                            placeholder="{{ $administrativeUnit->mnemonic != null ? $administrativeUnit->mnemonic : 'Sin Mnemónmico' }}"
+                            disabled>
                     </div>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="grid-zip">
+                    <div class="w-full xl:w-1/2">
+                        <label class="mb-2.5 block text-black dark:text-white" for="type">
                             Tipo
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="{{$administrativeUnit->type}}" disabled>
+                        <input
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            id="type" type="text"
+                            placeholder="@switch($administrativeUnit->type) @case('P') Plantel @break @case('DG') Dirección General @break @default Sin tipo @endswitch"
+                            disabled>
                     </div>
                 </div>
             </div>

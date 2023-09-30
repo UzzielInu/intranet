@@ -26,7 +26,7 @@
                     </div>
                 @endif
             </div>
-            <form method="POST" action="{{ route('administrativeUnit.store') }}" autocomplete="off" >
+            <form method="POST" action="{{ route('administrativeUnit.store') }}" autocomplete="off">
                 @csrf
                 <div class="p-6.5">
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
