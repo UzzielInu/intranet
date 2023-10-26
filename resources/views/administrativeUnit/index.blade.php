@@ -1,6 +1,6 @@
 <x-app-layout>
     {{-- El x-init="page = 'formLayout'" nos sirve para indicarle al sidebar dónde estamos situados --}}
-    <div  x-init="page = 'AdministrativeUnits'" class="container">
+    <div  x-init="page = 'AdministrativeUnits', show = true" class="container">
         @if(Session::has('success'))
         <div class="bg-green-500">
             {{ Session::get('success') }}
@@ -20,6 +20,7 @@
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
     >{{ __('Delete Account') }}</x-danger-button>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6">
             <div class="p-2 sm:p-2 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
@@ -27,6 +28,7 @@
             </div>
         </div>
     </div>
+    
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
             @csrf

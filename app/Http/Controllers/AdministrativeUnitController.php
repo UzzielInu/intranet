@@ -52,7 +52,7 @@ class AdministrativeUnitController extends Controller
      */
     public function edit(AdministrativeUnit $administrativeUnit)
     {
-        // dd($administrativeUnit);
+        dd($administrativeUnit);
         return view('administrativeUnit.edit', ['administrativeUnit' => $administrativeUnit]);
     }
 
@@ -72,6 +72,8 @@ class AdministrativeUnitController extends Controller
      */
     public function destroy(AdministrativeUnit $administrativeUnit)
     {
-        //
+        $administrativeUnit = AdministrativeUnit::find($administrativeUnit);
+        $administrativeUnit->delete();
+        return redirect()->route('administrativeUnit.index')->with('success', 'Unidad Administrativa eliminada exitosamente');
     }
 }

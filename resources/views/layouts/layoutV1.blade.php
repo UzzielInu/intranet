@@ -14,7 +14,7 @@
 
 <body x-data="{ page: '', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }" x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
-         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value))); $watch('page', value => console.log(value))" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value))); $watch('page', value => console.log(value));" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
     <!-- ===== Preloader Start ===== -->
     <!-- <include src="./partials/preloader.html"></include> -->
     @include('layouts.partials.preloader')
