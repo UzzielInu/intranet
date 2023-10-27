@@ -12,9 +12,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body x-data="{ page: '', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }" x-init="
-         darkMode = JSON.parse(localStorage.getItem('darkMode'));
-         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value))); $watch('page', value => console.log(value));" :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
+<body x-data="{ page: '', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false, 'deskToggle': false }" 
+        x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
+        $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)));
+        $watch('page', value => console.log(value));
+        deskToggle = JSON.parse(localStorage.getItem('deskToggle'));
+        $watch('deskToggle', value => localStorage.setItem('deskToggle', JSON.stringify(value)));" 
+        :class="{ 'dark text-bodydark bg-boxdark-2': darkMode === true}">
     <!-- ===== Preloader Start ===== -->
     <!-- <include src="./partials/preloader.html"></include> -->
     @include('layouts.partials.preloader')
@@ -47,4 +51,5 @@
     <!-- ===== Page Wrapper End ===== -->
 </body>
 @livewireScripts
+
 </html>

@@ -10,6 +10,7 @@ export default {
         "./resources/views/**/*.blade.php",
         "./vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php",
         "./src/**/*.{html,js}",
+        "./node_modules/tw-elements/dist/js/**/*.js"
     ],
     darkMode: "class",
     theme: {
@@ -325,5 +326,5 @@ export default {
             },
         },
     },
-    plugins: [forms],
+    plugins: [forms, require("tw-elements/dist/plugin.cjs")],
 };
