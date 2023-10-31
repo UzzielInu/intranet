@@ -9,7 +9,7 @@
         {{ config('app.name', 'Conalep') }}
     </title>
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 </head>
 
 <body x-data="{ page: '', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false, 'deskToggle': false }" 

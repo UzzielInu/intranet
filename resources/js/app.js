@@ -3,6 +3,7 @@ import './bootstrap';
 // dashboard template [INIT]
 import "jsvectormap/dist/css/jsvectormap.css";
 import "flatpickr/dist/flatpickr.min.css";
+import "../css/app.css";
 import "../css/style.css";
 // chart
 import chart01 from "../components/chart-01";
