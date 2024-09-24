@@ -5,6 +5,10 @@ use App\Http\Controllers\AdministrativeUnitController;
 use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\SheetNumberController;
 use App\Http\Controllers\SubmenuController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\MachineController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,10 +41,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/catalogues', function () { return view('catalogues.index'); })->middleware(['auth', 'verified'])->name('catalogues.index');
-    Route::resources(['administrativeUnit' => AdministrativeUnitController::class,
-                    'submenu' => SubmenuController::class, 
-                    'expenseType' => ExpenseTypeController::class,
-                    'sheetNumber' => SheetNumberController::class,]);
+    Route::resources([
+        'administrativeUnit' => AdministrativeUnitController::class,
+        'submenu' => SubmenuController::class, 
+        'expenseType' => ExpenseTypeController::class,
+        'sheetNumber' => SheetNumberController::class,
+        'report' => ReportController::class,
+        'company' => CompanyController::class,
+        'area' => AreaController::class,
+        'machine' => MachineController::class,]);
 });
 
 require __DIR__.'/auth.php';
