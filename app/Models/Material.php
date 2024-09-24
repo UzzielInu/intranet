@@ -26,3 +26,5 @@ class Material extends Model
     {
         return $this->belongsTo(Report::class);
     }
+    
+}

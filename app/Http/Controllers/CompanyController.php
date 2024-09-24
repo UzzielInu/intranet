@@ -29,7 +29,10 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $administrativeUnit = Company::create($validated);
+
+        return back()->with('success', 'La empresa se ha guardado correctamente');
     }
 
     /**
