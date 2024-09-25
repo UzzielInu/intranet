@@ -1,11 +1,4 @@
 Verde oscuro: #13322b
 verde claro: #00B3A1
 
-
-
 Pendientes:
-
-Hacer que la sidebar, sirva para hacer la contracción -> esto ya lo hace pero responsive, habria que ver si se necesita en desk
-con un feed de X (feibuk, twitter) -> WIP
-Localizar las datatables
-Espacio entre rows de la tabla podría ser menos

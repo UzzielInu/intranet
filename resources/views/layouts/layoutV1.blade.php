@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        {{ config('app.name', 'Conalep') }}
+        {{ config('app.name', 'Hitronic') }}
     </title>
     @livewireStyles
     @vite(['resources/js/app.js'])
@@ -49,7 +49,7 @@
         <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
+    @stack('scripts')
 </body>
 @livewireScripts
-
 </html>

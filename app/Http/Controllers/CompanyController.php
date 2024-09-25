@@ -30,9 +30,9 @@ class CompanyController extends Controller
     public function store(StoreCompanyRequest $request)
     {
         $validated = $request->validated();
-        $administrativeUnit = Company::create($validated);
+        $company = Company::create($validated);
 
-        return back()->with('success', 'La empresa se ha guardado correctamente');
+        return redirect()->route('company.index')->with('success', 'La Empresa se ha guardado correctamente');
     }
 
     /**
@@ -40,7 +40,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('company.show', ['company' => $company]);
     }
 
     /**
@@ -48,7 +48,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('company.edit', ['company' => $company]);
     }
 
     /**
@@ -56,7 +56,10 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+        $company->update($request->all());        
+        $company->save();
+        return redirect()->route('company.index')->with('success', 'La Empresa se ha editado correctamente');
+
     }
 
     /**
@@ -64,6 +67,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company = Company::find($company);
+        Company::destroy($company);
+        return response()->json(['success' => $company], 200);
     }
 }

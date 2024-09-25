@@ -1,4 +1,4 @@
-import './bootstrap';
+import './bootstrap';  
 
 // dashboard template [INIT]
 import "jsvectormap/dist/css/jsvectormap.css";
@@ -14,8 +14,8 @@ import map01 from "../components/map-01";
 // dashboard template [END]
 
 import Alpine from 'alpinejs';
-import persist from '@alpinejs/persist'
-import flatpickr from "flatpickr";
+import persist from '@alpinejs/persist';
+import flatpickr from 'flatpickr';
 
 // te Elements
 import { Carousel, Input, initTE } from "tw-elements";
@@ -25,7 +25,6 @@ initTE({ Carousel });
 Alpine.plugin(persist)
 window.Alpine = Alpine;
 Alpine.start();
-
 // Init flatpickr
 flatpickr(".datepicker", {
   mode: "range",

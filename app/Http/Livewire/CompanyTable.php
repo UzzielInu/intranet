@@ -13,6 +13,7 @@ class CompanyTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        $this->setEmptyMessage('Sin resultados');
     }
 
     public function columns(): array
@@ -20,16 +21,19 @@ class CompanyTable extends DataTableComponent
         return [
             Column::make("Id", "id")
                 ->sortable(),
-            Column::make("Name", "name")
+            Column::make("Nombre", "name")
+                ->sortable()
+                ->searchable()
+                ->excludeFromColumnSelect(),
+            Column::make("Fecha Creación", "created_at")
                 ->sortable(),
-            Column::make("Created at", "created_at")
-                ->sortable(),
-            Column::make("Updated at", "updated_at")
+            Column::make("Fecha Modificación", "updated_at")
                 ->sortable(),
             Column::make('Acciones', 'acciones')
                 ->label(
-                    fn ($row)  => '<button onclick="location.href = \'/administrativeUnit/'.$row->id .'\'"class="py-2 px-3 border rounded-lg"><i class="fa-regular fa-eye text-green-600"></i></button>
-                    <button onclick="location.href = \'/administrativeUnit/'.$row->id .'/edit\'"class="py-2 px-3 border rounded-full"><i class="fa-solid fa-pen-to-square text-blue-600"></i></button> <button wire:click="destroy(' . $row->id . ')" class="py-2 px-3 border""><i class="fa-solid fa-trash b text-red-600"></i></button>'
+                    fn ($row)  => '<button onclick="location.href = \'/company/'.$row->id .'\'"class="py-2 px-3 border rounded-lg"><i class="fa-regular fa-eye text-green-600"></i></button>
+                    <button onclick="location.href = \'/company/'.$row->id .'/edit\'"class="py-2 px-3 border rounded-full"><i class="fa-solid fa-pen-to-square text-blue-600"></i></button>
+                    <button onclick="validateDelete('.$row->id.',\''.$row->name.'\')" class="py-2 px-3 border""><i class="fa-solid fa-trash b text-red-600"></i></button>'
                 ) 
                 ->excludeFromColumnSelect()
                 ->html(),    

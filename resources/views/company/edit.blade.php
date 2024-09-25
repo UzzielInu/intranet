@@ -5,7 +5,7 @@
         <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div class="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 class="font-semibold text-black dark:text-white">
-                    Crear Empresa
+                    Editar Empresa
                 </h3>
                 @if (Session::has('success'))
                     <script>
@@ -31,7 +31,8 @@
                     </div>
                 @endif
             </div>
-            <form method="POST" action="{{ route('company.store') }}" autocomplete="off">
+            <form method="POST" action="{{ route('company.update', ['company' => $company]) }}" autocomplete="off">
+                @method('PUT')
                 @csrf
                 <div class="p-6.5">
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row justify-center content-center">
@@ -39,7 +40,7 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Nombre <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Nombre de la empresa" name="name" required
+                            <input type="text" placeholder="Nombre de la empresa" name="name" value="{{$company->name}}" required
                                 class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                         </div>
                     </div>
@@ -53,23 +54,4 @@
             </form>
         </div>
     </div>
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-                });
-                Toast.fire({
-                icon: "success",
-                title: "Empresa Creada"
-            });                  
-        })
-    </script> --}}
 </x-app-layout>
