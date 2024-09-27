@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Http\Requests\StoreAreaRequest;
 use App\Http\Requests\UpdateAreaRequest;
+use App\Models\Company;
 
 class AreaController extends Controller
 {
@@ -21,7 +22,13 @@ class AreaController extends Controller
      */
     public function create()
     {
-        //
+        return view('area.create');
+    }
+
+    public function createFromCompany($company)
+    {
+        $company= Company::find($company);
+        return view('area.createFromCompany', ['company' => $company]);
     }
 
     /**
@@ -29,7 +36,14 @@ class AreaController extends Controller
      */
     public function store(StoreAreaRequest $request)
     {
-        //
+        $validated = $request->validated();
+        if(isset($validated['company'])){
+            $company = Company::find($validated['company']);
+            $area = $company->areas()->create($validated);
+        }else{
+            dd($validated);
+        }
+        return redirect()->route('company.show', ['company' => $company->id])->with('success', 'El área '.$area->name.' se ha guardado correctamente');
     }
 
     /**
@@ -37,7 +51,7 @@ class AreaController extends Controller
      */
     public function show(Area $area)
     {
-        //
+        return view('area.show', ['area' => $area]);
     }
 
     /**
@@ -62,5 +76,12 @@ class AreaController extends Controller
     public function destroy(Area $area)
     {
         //
+    }
+
+    public function options()
+    {
+        $areas = Area::get(['id', 'name']);
+        // dd($areas);
+        return response()->json($areas);
     }
 }

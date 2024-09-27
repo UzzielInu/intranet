@@ -32,7 +32,7 @@ class CompanyController extends Controller
         $validated = $request->validated();
         $company = Company::create($validated);
 
-        return redirect()->route('company.index')->with('success', 'La Empresa se ha guardado correctamente');
+        return redirect()->route('company.index')->with('success', 'La empresa '+$company->name+' se ha guardado correctamente');
     }
 
     /**

@@ -23,6 +23,7 @@ class StoreAreaRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'company' => 'nullable',
         ];
     }
 

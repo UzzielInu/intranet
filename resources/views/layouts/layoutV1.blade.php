@@ -8,8 +8,8 @@
     <title>
         {{ config('app.name', 'Hitronic') }}
     </title>
-    @livewireStyles
     @vite(['resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body x-data="{ page: '', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false, 'deskToggle': false }" 

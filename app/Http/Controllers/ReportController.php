@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
+use App\Models\Company;
+use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
@@ -13,7 +15,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        return view('report.index');
     }
 
     /**
@@ -21,7 +23,8 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        return view('report.create', ['companies' => $companies]);
     }
 
     /**
@@ -29,7 +32,13 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        //
+        
+        $validated = $request->validated();
+        dd($validated);
+        $report = Report::create($validated);
+
+        return redirect()->route('report.index')->with('success', 'El Reporte '+$report->id+' se ha guardado correctamente');
+
     }
 
     /**
