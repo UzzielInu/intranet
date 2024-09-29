@@ -33,7 +33,7 @@
                     <div class="flex flex-row w-full xl:flex-row justify-center">
                         <h1 class="text-3xl">Máquinas</h1>
                     </div>
-                    <livewire:machine-table/>
+                    <livewire:machine-table :area="$area->id"/>
                 </div>
             </div>
         </div>

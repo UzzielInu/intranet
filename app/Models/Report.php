@@ -24,6 +24,7 @@ class Report extends Model
         'arrival',
         'exit',
         'total_work',
+        'area_id',
         'created_at',
         'updated_at',
     ];

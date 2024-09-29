@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Http\Requests\StoreAreaRequest;
 use App\Http\Requests\UpdateAreaRequest;
 use App\Models\Company;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class AreaController extends Controller
 {
@@ -78,10 +79,9 @@ class AreaController extends Controller
         //
     }
 
-    public function options()
+    public function options($company)
     {
-        $areas = Area::get(['id', 'name']);
-        // dd($areas);
+        $areas = Area::where('company_id', $company)->get(['id', 'name as text']);
         return response()->json($areas);
     }
 }

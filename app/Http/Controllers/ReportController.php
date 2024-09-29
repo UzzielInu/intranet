@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMaterialRequest;
 use App\Models\Report;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Models\Company;
+use App\Models\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
@@ -32,12 +35,21 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        
         $validated = $request->validated();
-        dd($validated);
-        $report = Report::create($validated);
-
-        return redirect()->route('report.index')->with('success', 'El Reporte '+$report->id+' se ha guardado correctamente');
+        // dd($validated);
+        $user = Auth::user();
+        $report = $user->reports()->create($validated);
+        for ($i = 0; $i < count($validated['item']); $i++) {
+            $report->materials()->create([
+                'item'=>$validated['item'][$i],
+                'quantity'=>$validated['quantity'][$i],
+                'description'=>$validated['description'][$i],
+                'location'=>$validated['location'][$i],
+                'origin' => $validated['origin'][$i]]
+            );
+        }
+        
+        return redirect()->route('report.index')->with('success', 'El Reporte '.$report->id.' se ha guardado correctamente');
 
     }
 

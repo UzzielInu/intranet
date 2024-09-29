@@ -53,5 +53,5 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/area/create/{company}', [AreaController::class, 'createFromCompany'])->middleware(['auth', 'verified'])->name('area.createFromCompany');
     Route::get('/machine/create/{area}', [MachineController::class, 'createFromArea'])->middleware(['auth', 'verified'])->name('machine.createFromArea');
-    Route::get('/options/area',[AreaController::class, 'options'])->middleware(['auth', 'verified'])->name('area.options');
+    Route::get('/options/area/{company}',[AreaController::class, 'options'])->middleware(['auth', 'verified'])->name('area.options');
 require __DIR__.'/auth.php';

@@ -2,17 +2,30 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Machine;
 
 class MachineTable extends DataTableComponent
 {
-    protected $model = Machine::class;
+    // protected $model = Machine::class;
+    public $area_id;
+
+    public function mount($area)
+    {
+        $this->area_id = $area;
+    }
 
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+    }
+
+    public function builder(): Builder
+    {
+        return Machine::query()
+            ->where('area_id','=', $this->area_id);
     }
 
     public function columns(): array

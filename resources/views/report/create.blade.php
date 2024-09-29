@@ -57,12 +57,12 @@
                         </div>
                     </div>
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row justify-center content-center">
-                        <div class="w-full flex flex-row">
+                        <div class="w-full flex flex-row content-center justify-center">
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Empresa <span class="text-meta-1">*</span>
                             </label>
-                            <select name="company" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                                <option value="0" selected>Selecciona Empresa</option>
+                            <select id="company" name="company_id" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                <option value=""></option>
                                 @foreach ($companies as $company)
                                     <option value="{{ $company->id }}">
                                         {{ $company->name }}
@@ -74,8 +74,9 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Área de Trabajo <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="select area" name="area"
-                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                            <select id="area" name="area_id" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                {{-- <option value=""></option> --}}
+                            </select>
                         </div>
                     </div>
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row justify-center content-center">
@@ -83,15 +84,15 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Actividades <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Escriba las actividades" name="activities"
-                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                            <textarea class="w-full min-h-[100px] rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            placeholder="Escriba las actividades" name="activities"></textarea>
                         </div>
                         <div class="w-full flex flex-row">
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Faltantes <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Escriba los faltantes" name="missing"
-                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                            <textarea class="w-full min-h-[100px] rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            placeholder="Escriba los faltantes" name="missing"></textarea>
                         </div>
                     </div>
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row justify-center content-center">
@@ -99,8 +100,12 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Estado <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Select estado" name="status"
-                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                            <select id="status" name="status" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                <option value="" selected hidden></option>
+                                <option value="Presupuestado">Presupuestado</option>
+                                <option value="Por cobrar">Por cobrar</option>
+                                <option value="Cobrado">Cobrado</option>
+                            </select>
                         </div>
                         <div class="w-full flex flex-row">
                             <label class="flex my-auto mr-2 text-black dark:text-white">
@@ -122,21 +127,21 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Llegada <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Hora de llegada" name="quantity"
-                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                            <input id="arrival" type="time" placeholder="Hora de llegada" name="arrival"
+                                class="time w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                         </div>
                         <div class="w-full flex flex-row">
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Salida <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Hora de salida" name="exit"
-                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                            <input id="exit" type="time" placeholder="Hora de salida" name="exit"
+                                class="time w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                         </div>
                         <div class="w-full flex flex-row">
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Horas de trabajo <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Horas Trabajadas" name="total_work"
+                            <input id="total_work" type="text" placeholder="Horas Trabajadas" name="total_work"
                                 class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                         </div>
                     </div>
@@ -148,6 +153,13 @@
                         </button>
                     </div>
                     <div id="materials" class="mb-4.5 flex flex-col gap-6 justify-center content-center">
+                        <div class="w-full flex flex-row justify-between">
+                            <label class="flex text-black dark:text-white">Partida</label>
+                            <label class="flex text-black dark:text-white">Cantidad</label>
+                            <label class="flex text-black dark:text-white">Material</label>
+                            <label class="flex text-black dark:text-white">Ubicación</label>
+                            <label class="flex text-black dark:text-white">Procedencia</label>
+                        </div>
                     </div>
                     <div class="flex justify-center">
                         <button type="submit"
@@ -159,26 +171,82 @@
             </form>
         </div>
     </div>
+    <script type='module'>
+        $(document).ready(function() {
+            // Initialize Select2
+            $('#company').select2({
+                placeholder: "Empresa",
+            });
+            $('#area').select2({
+                placeholder: "Área",
+            });
+
+            $('#company').on( "change", function() {
+                $("#area").html('').select2({data: [{id: '', text: ''}]});
+                console.log($(this).val());
+                let uri = ('{{URL::to('/')}}'+'/options/area/'+$(this).val());
+                $.get(uri, function(data, status){
+                    console.log(data.length, status);
+                    if(status != "success"){
+                        console.log("error");
+                    }else{
+                        $("#area").select2({
+                            placeholder: "Área",
+                            data: data
+                        })
+                    }
+                });
+            });
+
+            $('input.time').on( "change", function() {
+                let entrada = $('#arrival').val();
+                let salida = $('#exit').val();
+                console.log(entrada, salida);
+                if (entrada && salida) {
+                    let [horaEntrada, minutoEntrada] = entrada.split(':');
+                    let [horaSalida, minutoSalida] = salida.split(':');
+
+                    let fechaEntrada = new Date();
+                    let fechaSalida = new Date();
+
+                    fechaEntrada.setHours(horaEntrada, minutoEntrada);
+                    fechaSalida.setHours(horaSalida, minutoSalida);
+
+                    // Calcular la diferencia en milisegundos
+                    let diferencia = fechaSalida - fechaEntrada;
+                    if (diferencia < 0) {
+                        alert('La hora de salida debe ser mayor que la hora de entrada');
+                        return;
+                    }
+                    let horasTranscurridas = Math.floor(diferencia / (1000 * 60 * 60));
+                    let minutosTranscurridos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                    $("#total_work").val(`${horasTranscurridas} horas y ${minutosTranscurridos} minutos`);
+                }else {
+                    $("#total_work").val('Ingrese entrada y salida');
+                }
+            });
+        });
+    </script>
     <script>
         function addMaterial() {
             var materialDiv = document.createElement("div");
-            materialDiv.setAttribute("class", "w-full flex flex-row gap-6");
+            materialDiv.setAttribute("class", "w-full flex flex-col lg:flex-row gap-6");
             
             // Create div Item
             var divItem = document.createElement("div");
-            divItem.setAttribute("class", "w-full flex flex-row");
+            divItem.setAttribute("class", "w-full lg:w-2/12 flex flex-row");
             var labelItem = document.createElement("label");
             labelItem.setAttribute("class", "flex my-auto mr-2 text-black dark:text-white");
-            labelItem.innerHTML = "Item";
+            labelItem.innerHTML = "partida";
             var inputItem = document.createElement("input");
             inputItem.setAttribute("type", "text");
             inputItem.setAttribute("placeholder", "Partida");
             inputItem.setAttribute("name", "item[]");
             inputItem.setAttribute("class", "w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary");
-            divItem.append(labelItem, inputItem);
+            divItem.append(inputItem);
             // Create div Quantity
             var divQuantity = document.createElement("div");
-            divQuantity.setAttribute("class", "w-full flex flex-row");
+            divQuantity.setAttribute("class", "w-full lg:w-2/12 flex flex-row");
             var labelQuantity = document.createElement("label");
             labelQuantity.setAttribute("class", "flex my-auto mr-2 text-black dark:text-white");
             labelQuantity.innerHTML = "Cantidad";
@@ -187,45 +255,54 @@
             inputQuantity.setAttribute("placeholder", "Cantidad");
             inputQuantity.setAttribute("name", "quantity[]");
             inputQuantity.setAttribute("class", "w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary");
-            divQuantity.append(labelQuantity, inputQuantity);
+            divQuantity.append(inputQuantity);
             // Create div Description
             var divDescription = document.createElement("div");
-            divDescription.setAttribute("class", "w-full flex flex-row");
+            divDescription.setAttribute("class", "w-full lg:w-4/12 flex flex-row");
             var labelDescription = document.createElement("label");
             labelDescription.setAttribute("class", "flex my-auto mr-2 text-black dark:text-white");
-            labelDescription.innerHTML = "Descripción";
+            labelDescription.innerHTML = "Material";
             var inputDescription = document.createElement("input");
             inputDescription.setAttribute("type", "text");
             inputDescription.setAttribute("placeholder", "Material");
             inputDescription.setAttribute("name", "description[]");
             inputDescription.setAttribute("class", "w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary");
-            divDescription.append(labelDescription, inputDescription);
+            divDescription.append(inputDescription);
             // Create div Location
             var divLocation = document.createElement("div");
-            divLocation.setAttribute("class", "w-full flex flex-row");
+            divLocation.setAttribute("class", "w-full lg:w-2/12 flex flex-row");
             var labelLocation = document.createElement("label");
             labelLocation.setAttribute("class", "flex my-auto mr-2 text-black dark:text-white");
-            labelLocation.innerHTML = "Location";
+            labelLocation.innerHTML = "Ubicación";
             var inputLocation = document.createElement("input");
             inputLocation.setAttribute("type", "text");
             inputLocation.setAttribute("placeholder", "Ubicación");
             inputLocation.setAttribute("name", "location[]");
             inputLocation.setAttribute("class", "w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary");
-            divLocation.append(labelLocation, inputLocation);
+            divLocation.append(inputLocation);
             // Create div Origin
             var divOrigin = document.createElement("div");
-            divOrigin.setAttribute("class", "w-full flex flex-row");
+            divOrigin.setAttribute("class", "w-full lg:w-2/12 flex flex-row");
             var labelOrigin = document.createElement("label");
             labelOrigin.setAttribute("class", "flex my-auto mr-2 text-black dark:text-white");
-            labelOrigin.innerHTML = "Origin";
-            var inputOrigin = document.createElement("input");
-            inputOrigin.setAttribute("type", "text");
-            inputOrigin.setAttribute("placeholder", "Procedencia");
+            labelOrigin.innerHTML = "Procedencia";
+            var inputOrigin = document.createElement("select");
             inputOrigin.setAttribute("name", "origin[]");
             inputOrigin.setAttribute("class", "w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary");
-            divOrigin.append(labelOrigin, inputOrigin);
-
-
+            var option1 = document.createElement("option");
+            option1.setAttribute("value", "Procedencia");
+            option1.setAttribute("selected");
+            option1.setAttribute("hidden");
+            option1.innerHTML = "";
+            var option2 = document.createElement("option");
+            option2.setAttribute("value", "Tienda");
+            option2.innerHTML = "Tienda";
+            var option3 = document.createElement("option");
+            option3.setAttribute("value", "Bodega");
+            option3.innerHTML = "Bodega";
+            inputOrigin.append(option1, option2, option3)
+            divOrigin.append(inputOrigin);
+            
             materialDiv.append(divItem, divQuantity, divDescription, divLocation, divOrigin);
            document.getElementById("materials").append(materialDiv);
         }

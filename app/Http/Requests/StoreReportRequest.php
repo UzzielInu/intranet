@@ -32,7 +32,7 @@ class StoreReportRequest extends FormRequest
             'arrival' => 'nullable',
             'exit' => 'nullable',
             'total_work' => 'nullable',
-
+            'area_id' => 'nullable',
             //materials
             'item.*' => 'required',
             'quantity.*' => 'required',

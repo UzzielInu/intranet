@@ -2,18 +2,31 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Area;
 
 class AreaTable extends DataTableComponent
 {
-    protected $model = Area::class;
+    // protected $model = Area::class;
+    public $company_id;
+
+    public function mount($company)
+    {
+        $this->company_id = $company;
+    }
 
     public function configure(): void
     {
         $this->setPrimaryKey('id');
         $this->setEmptyMessage('Sin resultados');
+    }
+
+    public function builder(): Builder
+    {
+        return Area::query()
+            ->where('company_id','=', $this->company_id);
     }
 
     public function columns(): array

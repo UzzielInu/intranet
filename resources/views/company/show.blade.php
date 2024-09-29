@@ -30,7 +30,7 @@
                     <div class="flex flex-row w-full xl:flex-row justify-center">
                         <h1 class="text-3xl">Áreas</h1>
                     </div>
-                    <livewire:area-table/>
+                    <livewire:area-table :company="$company->id"/>
                 </div>
             </div>
         </div>
