@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('activities')->nullable();;
             $table->string('missing')->nullable();;
             $table->string('status');
+            $table->string('payment_type');
             $table->string('signature_name');
             $table->string('signature');
             $table->time('arrival', precision: 0);

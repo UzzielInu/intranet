@@ -45,6 +45,14 @@ class MachineTable extends DataTableComponent
                 ->sortable(),
             Column::make("Updated at", "updated_at")
                 ->sortable(),
+            // Column::make('Acciones', 'acciones')
+            // ->label(
+            //     fn ($row)  => '<button onclick="location.href = \'/machine/'.$row->id .'\'"class="py-2 px-3 border rounded-lg"><i class="fa-regular fa-eye text-green-600"></i></button>
+            //     <button onclick="location.href = \'/machine/'.$row->id .'/edit\'"class="py-2 px-3 border rounded-full"><i class="fa-solid fa-pen-to-square text-blue-600"></i></button>
+            //     <button onclick="validateDelete('.$row->id.',\''.$row->name.'\')" class="py-2 px-3 border""><i class="fa-solid fa-trash b text-red-600"></i></button>'
+            // ) 
+            // ->excludeFromColumnSelect()
+            // ->html(),
         ];
     }
 }

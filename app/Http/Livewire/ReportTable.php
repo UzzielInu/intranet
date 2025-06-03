@@ -21,6 +21,7 @@ class ReportTable extends DataTableComponent
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Partner", "partner")
+                ->searchable()
                 ->sortable(),
             Column::make("Date", "date")
                 ->sortable(),
@@ -29,6 +30,7 @@ class ReportTable extends DataTableComponent
             Column::make("Missing", "missing")
                 ->sortable(),
             Column::make("Status", "status")
+                ->searchable()
                 ->sortable(),
             Column::make("Signature name", "signature_name")
                 ->sortable(),
@@ -39,10 +41,6 @@ class ReportTable extends DataTableComponent
             Column::make("Exit", "exit")
                 ->sortable(),
             Column::make("Total work", "total_work")
-                ->sortable(),
-            Column::make("Created at", "created_at")
-                ->sortable(),
-            Column::make("Updated at", "updated_at")
                 ->sortable(),
             Column::make("Created at", "created_at")
                 ->sortable(),

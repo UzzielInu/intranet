@@ -44,7 +44,6 @@ class ReportController extends Controller
                 'item'=>$validated['item'][$i],
                 'quantity'=>$validated['quantity'][$i],
                 'description'=>$validated['description'][$i],
-                'location'=>$validated['location'][$i],
                 'origin' => $validated['origin'][$i]]
             );
         }

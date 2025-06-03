@@ -1,0 +1,26 @@
+Nombre de máquina en Máquinas.
+En consumo de placa que admita puntos decimales.
+En reporte falta agregar la máquina de la que se está hablando.
+En Estado que sea "Terminado" o "Pendiente".
+Y agregar tipo de cobranza, "Presupuestado" o "Por cobrar".
+El de cobrado solo es colocado por el de oficina (otro usuario).****
+En el formato de tiempo "llegada" y "salida" será de 24 Hrs.
+Retirar el apartado de "ubicación".
+Checar cuando mande a un error no elimine toda la información cargada.****
+Ver si se puede generar una vista de reporte que se pueda imprimir.****
+
+En una pantalla de home agregar los mismos botones de la barra izquierda pero en grandote y que aparezca un desplegado de los últimos 5 reportes que estén por terminar con un contador totalitario.
+Los que estén por cobrar que aparezca lo mismo.
+
+De mínimo son 3 permisos de usuarios:
+1.- Uno es para crear reportes y poder visualizar los suyos
+2.- El segundo (administrativo) puede ver todos los reportes y poder modificar el estado de cobranza.
+3.- El tercero puede ver todos los reportes, crear nuevos, modificar el estado de pendiente a terminado y agregar un botón de revisado (guardando la fecha de la revisión).
+
+
+
+Del 25/04/2025
+El buscador de reportes todavía no jala.
+>>> Sigue sin aceptar los puntos decimales en amperaje de máquina
+Manda a error si no se tiene seleccionada una máquina, no se si se pueda la opción de ahí mismo agregar una máquina o que sólo mande la alerta de que está faltante, ahí me dices
+Validar que hay una máquina

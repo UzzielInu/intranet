@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('item');
             $table->string('quantity');
             $table->string('description');
-            $table->string('location');
             $table->string('origin');
             $table->foreignIdFor(Report::class);
             $table->timestamps();

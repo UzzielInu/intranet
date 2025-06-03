@@ -78,4 +78,10 @@ class MachineController extends Controller
     {
         //
     }
+
+    public function options($area)
+    {
+        $machines = Machine::where('area_id', $area)->get(['id', 'name as text']);
+        return response()->json($machines);
+    }
 }

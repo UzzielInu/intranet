@@ -19,6 +19,7 @@ class Report extends Model
         'activities',
         'missing',
         'status',
+        'payment_type',
         'signature_name',
         'signature',
         'arrival',

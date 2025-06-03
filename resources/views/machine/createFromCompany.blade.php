@@ -36,7 +36,7 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Nombre <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Nombre del área" name="name" required
+                            <input type="text" placeholder="Nombre de la máquina" name="name" required
                                 class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                         </div>
                         <div class="w-full flex flex-row">
@@ -61,8 +61,8 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Consumo de Placa <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Consumo en Amperes (A)" name="board_consumption" required pattern="\d*" title="Solo se permiten números" inputmode="numeric"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                            <input type="text" placeholder="Consumo en Amperes (A)" name="board_consumption" required  pattern="^\d+(\.\d{1,2})?$" inputmode="decimal" title="Solo se permiten números y punto decimal" inputmode="numeric"
+                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                 class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 <x-app-layout>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
     <!-- ====== Form Layout Section Start -->
     <div class="flex flex-col gap-9">
         <!-- Contact Form -->
@@ -78,6 +79,14 @@
                                 {{-- <option value=""></option> --}}
                             </select>
                         </div>
+                        <div class="w-full flex flex-row">
+                            <label class="flex my-auto mr-2 text-black dark:text-white">
+                                Máquina <span class="text-meta-1">*</span>
+                            </label>
+                            <select id="machine" name="machine_id" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                {{-- <option value=""></option> --}}
+                            </select>
+                        </div>
                     </div>
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row justify-center content-center">
                         <div class="w-full flex flex-row">
@@ -102,11 +111,22 @@
                             </label>
                             <select id="status" name="status" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                 <option value="" selected hidden></option>
-                                <option value="Presupuestado">Presupuestado</option>
-                                <option value="Por cobrar">Por cobrar</option>
-                                <option value="Cobrado">Cobrado</option>
+                                <option value="Terminado">Terminado</option>
+                                <option value="Pendiente">Pendiente</option>
                             </select>
                         </div>
+                        <div class="w-full flex flex-row">
+                            <label class="flex my-auto mr-2 text-black dark:text-white">
+                                Tipo Cobranza <span class="text-meta-1">*</span>
+                            </label>
+                            <select id="cobranza" name="cobranza" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                <option value="" selected hidden></option>
+                                <option value="Presupuestado">Presupuestado</option>
+                                <option value="Por Cobrar">Por Cobrar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4.5 flex flex-col gap-6 xl:flex-row justify-center content-center">
                         <div class="w-full flex flex-row">
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Nombre Firma <span class="text-meta-1">*</span>
@@ -118,8 +138,13 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Firma <span class="text-meta-1">*</span>
                             </label>
-                            <input type="text" placeholder="Firma" name="signature"
-                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
+                            {{-- <input type="text" placeholder="Firma" name="signature"
+                                class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" /> --}}
+                            <div style="border: 1px solid #ccc; width: 400px; height: 200px;">
+                                <canvas id="signature-pad" width="400" height="200"></canvas>
+                            </div>
+                            <button type="button" id="clear">Limpiar</button>
+                            <input type="hidden" name="signature" id="signature">
                         </div>
                     </div>
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row justify-center content-center">
@@ -127,7 +152,7 @@
                             <label class="flex my-auto mr-2 text-black dark:text-white">
                                 Llegada <span class="text-meta-1">*</span>
                             </label>
-                            <input id="arrival" type="time" placeholder="Hora de llegada" name="arrival"
+                            <input id="arrival" type="text" placeholder="Hora de llegada" name="arrival"
                                 class="time w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                         </div>
                         <div class="w-full flex flex-row">
@@ -157,7 +182,7 @@
                             <label class="flex text-black dark:text-white">Partida</label>
                             <label class="flex text-black dark:text-white">Cantidad</label>
                             <label class="flex text-black dark:text-white">Material</label>
-                            <label class="flex text-black dark:text-white">Ubicación</label>
+                            {{-- <label class="flex text-black dark:text-white">Ubicación</label> --}}
                             <label class="flex text-black dark:text-white">Procedencia</label>
                         </div>
                     </div>
@@ -173,12 +198,44 @@
     </div>
     <script type='module'>
         $(document).ready(function() {
+            flatpickr("#arrival", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i", // Formato 24 horas: HH:mm
+                time_24hr: true
+            });
+            flatpickr("#exit", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i", // Formato 24 horas: HH:mm
+                time_24hr: true
+            });
             // Initialize Select2
             $('#company').select2({
                 placeholder: "Empresa",
             });
             $('#area').select2({
                 placeholder: "Área",
+            });
+            $('#machine').select2({
+                placeholder: "Máquina",
+            });
+
+            $('#area').on( "change", function() {
+                $("#machine").html('').select2({data: [{id: '', text: ''}]});
+                console.log($(this).val());
+                let uri = ('{{URL::to('/')}}'+'/options/machine/'+$(this).val());
+                $.get(uri, function(data, status){
+                    console.log(data.length, status);
+                    if(status != "success"){
+                        console.log("error");
+                    }else{
+                        $("#machine").select2({
+                            placeholder: "Máquina",
+                            data: data
+                        })
+                    }
+                });
             });
 
             $('#company').on( "change", function() {
@@ -214,10 +271,10 @@
 
                     // Calcular la diferencia en milisegundos
                     let diferencia = fechaSalida - fechaEntrada;
-                    if (diferencia < 0) {
-                        alert('La hora de salida debe ser mayor que la hora de entrada');
-                        return;
-                    }
+                    //if (diferencia < 0) {
+                    //    alert('La hora de salida debe ser mayor que la hora de entrada');
+                    //    return;
+                    //}
                     let horasTranscurridas = Math.floor(diferencia / (1000 * 60 * 60));
                     let minutosTranscurridos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
                     $("#total_work").val(`${horasTranscurridas} horas y ${minutosTranscurridos} minutos`);
@@ -268,21 +325,10 @@
             inputDescription.setAttribute("name", "description[]");
             inputDescription.setAttribute("class", "w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary");
             divDescription.append(inputDescription);
-            // Create div Location
-            var divLocation = document.createElement("div");
-            divLocation.setAttribute("class", "w-full lg:w-2/12 flex flex-row");
-            var labelLocation = document.createElement("label");
-            labelLocation.setAttribute("class", "flex my-auto mr-2 text-black dark:text-white");
-            labelLocation.innerHTML = "Ubicación";
-            var inputLocation = document.createElement("input");
-            inputLocation.setAttribute("type", "text");
-            inputLocation.setAttribute("placeholder", "Ubicación");
-            inputLocation.setAttribute("name", "location[]");
-            inputLocation.setAttribute("class", "w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary");
-            divLocation.append(inputLocation);
+            
             // Create div Origin
             var divOrigin = document.createElement("div");
-            divOrigin.setAttribute("class", "w-full lg:w-2/12 flex flex-row");
+            divOrigin.setAttribute("class", "w-full lg:w-4/12 flex flex-row");
             var labelOrigin = document.createElement("label");
             labelOrigin.setAttribute("class", "flex my-auto mr-2 text-black dark:text-white");
             labelOrigin.innerHTML = "Procedencia";
@@ -303,8 +349,30 @@
             inputOrigin.append(option1, option2, option3)
             divOrigin.append(inputOrigin);
             
-            materialDiv.append(divItem, divQuantity, divDescription, divLocation, divOrigin);
+            materialDiv.append(divItem, divQuantity, divDescription, divOrigin);
            document.getElementById("materials").append(materialDiv);
         }
     </script>
+    <script>
+    const canvas = document.getElementById('signature-pad');
+    const signaturePad = new SignaturePad(canvas);
+    const clearButton = document.getElementById('clear');
+    const saveButton = document.getElementById('save');
+    const form = document.getElementById('signature-form');
+    const input = document.getElementById('signature');
+
+    clearButton.addEventListener('click', function () {
+        signaturePad.clear();
+    });
+
+    saveButton.addEventListener('click', function () {
+        if (signaturePad.isEmpty()) {
+            alert("Por favor firma antes de guardar.");
+        } else {
+            const dataURL = signaturePad.toDataURL(); // Imagen base64
+            input.value = dataURL;
+            form.submit();
+        }
+    });
+</script>
 </x-app-layout>
