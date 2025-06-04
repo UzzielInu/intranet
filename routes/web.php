@@ -22,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/tortas-migrate', function () {
+    Artisan::call('migrate:fresh');
+    return('DONE');
+});
 Route::get('/', function () {
     return view('auth.login');
 });
